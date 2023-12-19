@@ -1,0 +1,693 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Bus Enquiry - Assignment 2</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a20b823c-7dc4-4d4e-aa38-743717eeff62" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🚌</span></div><h1 class="page-title">Bus Enquiry - Assignment 2</h1><p class="page-description"></p></header><div class="page-body"><p id="f17f46eb-bf86-4daa-a3f4-322ba951b42c" class="">B Madhav</p><p id="ff6982ac-d121-4db7-a9be-959d42c4ba2a" class="">Batch 1</p><p id="0511e5de-403a-49dc-999e-ae691ee8db1e" class="">
+</p><p id="f04a1613-59a0-4a41-93aa-548cfcd4d8f1" class="">The Bus Enquiry System is a comprehensive and efficient information management solution designed to streamline and enhance the operations of a bus transportation service. In the dynamic landscape of public transportation, where reliability and accessibility are paramount, this system serves as a centralized hub for managing diverse aspects of bus services, from route planning and bus assignments to user roles and customer bookings.</p><p id="eece1fdc-ddf9-466e-89fa-c8aca2c45a08" class="">
+</p><h2 id="92db0d03-3538-4433-b57e-4daa949725e8" class=""><strong>Key Features:</strong></h2><ol type="1" id="4c404174-f47d-4b90-9d62-8c7116aa396f" class="numbered-list" start="1"><li><strong>Bus and Route Management:</strong><br/>The system provides a structured approach to cataloging buses, detailing their unique characteristics such as bus number, type, make, and assigned routes. Route information includes the source and destination points, as well as the duration of the journey.<br/></li></ol><ol type="1" id="864fbb8c-040a-4f52-be3b-257865d1de46" class="numbered-list" start="2"><li><strong>Employee Tracking:</strong><br/>Efficient employee management is crucial for the smooth operation of bus services. The system maintains a record of employees, including drivers, conductors, and cleaners, linking them to specific bus routes and ensuring seamless coordination.<br/></li></ol><ol type="1" id="461ce9c6-18d3-48c9-884d-133f95a5d2e2" class="numbered-list" start="3"><li><strong>User Roles and Permissions:</strong><br/>To enhance security and facilitate role-specific functionalities, the system incorporates a user role mapping feature. It allows administrators to assign roles to users, controlling access to different parts of the system based on responsibilities and permissions.<br/></li></ol><ol type="1" id="dbb1de7c-07f1-479d-abba-d787fe4d29c6" class="numbered-list" start="4"><li><strong>Booking and Reservation:</strong><br/>The system facilitates bus booking and reservation processes, managing the allocation of seats and recording essential details such as the number of seats booked and booking date. This feature ensures an organized and user-friendly experience for passengers.<br/></li></ol><ol type="1" id="8713d0cf-cba9-4783-93e6-58676e304b97" class="numbered-list" start="5"><li><strong>Customer Interaction:</strong><br/>With a dedicated module for customer bookings, the system captures customer details, their booked seats, and relevant transaction information. This not only aids in customer service but also provides valuable data for improving service quality and optimizing routes.<br/></li></ol><p id="f86f41a2-f8df-4994-8da3-39ab67a5ae4a" class="">
+</p><h2 id="3b5fde7e-449a-4332-a12e-9a5e88b4f606" class=""><strong>Entities and Relationships:</strong></h2><ol type="1" id="5bb5e8c8-03db-45c0-8bd9-1fe1b3fc38f6" class="numbered-list" start="1"><li><strong>Bus Information:</strong><ul id="89a74d9e-eef0-4126-96d9-0f641251c591" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>bus</strong></code> table contains information about buses, including a unique bus number (<code><strong>bus_no</strong></code>), bus type (<code><strong>bus_type</strong></code>), and make (<code><strong>make</strong></code>).</li></ul></li></ol><ol type="1" id="ce37d379-33f3-4b03-98bb-fa3a3ba6167b" class="numbered-list" start="2"><li><strong>Places:</strong><ul id="2bcc4096-88de-45f1-aa03-643c3afec27d" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>places</strong></code> table stores information about places, including abbreviated codes (<code><strong>place_abrv</strong></code>) and full names (<code><strong>place_name</strong></code>).</li></ul></li></ol><ol type="1" id="e0c9f496-d6b9-40d6-b1d6-5fec0fbe0a1e" class="numbered-list" start="3"><li><strong>User Management:</strong><ul id="5bfe27ea-9752-4fad-8766-434c3ddbbca1" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>users</strong></code> table manages user information with a unique user ID (<code><strong>user_id</strong></code>), username (<code><strong>username</strong></code>), email address (<code><strong>email</strong></code>), and password (<code><strong>password</strong></code>).</li></ul></li></ol><ol type="1" id="9eeccfcd-efcd-412a-89d3-c297b818d875" class="numbered-list" start="4"><li><strong>Employee Information:</strong><ul id="37b11c7f-25ef-4217-ad97-a60707e87bbd" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>employees</strong></code> table holds details about employees, including employee ID (<code><strong>employee_id</strong></code>), name (<code><strong>employee_name</strong></code>), and role (<code><strong>employee_role</strong></code>).</li></ul></li></ol><ol type="1" id="c7f6863e-8bee-4560-9013-508ae22934c3" class="numbered-list" start="5"><li><strong>User Role Mapping:</strong><ul id="d1007220-0f86-44be-81e6-4d4d75d478c0" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>user_role_mapping</strong></code> table establishes a relationship between users and their assigned roles.</li></ul></li></ol><ol type="1" id="4babf5c8-249b-4c42-a6be-e38a45b767a3" class="numbered-list" start="6"><li><strong>Role ID and Name Mapping:</strong><ul id="1798c799-2703-4514-8328-b434cff1b79f" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>role_id_name_mapping</strong></code> table links role IDs to their corresponding names.</li></ul></li></ol><ol type="1" id="eb42af08-fda3-4e4d-8f20-c6abb82968a5" class="numbered-list" start="7"><li><strong>Employee Role Mapping:</strong><ul id="d3e4e555-aead-49c4-8c3a-d33180c31947" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>employee_role_mapping</strong></code> table associates roles with their respective IDs and names.</li></ul></li></ol><ol type="1" id="7241aa29-d1a3-4a36-9271-16b29c1c6623" class="numbered-list" start="8"><li><strong>Bus Routes:</strong><ul id="e867a8f2-ca37-4f20-b5bf-91e2393d90a9" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>bus_route</strong></code> table defines bus routes, including a unique route ID (<code><strong>bus_id</strong></code>), source and destination places (<code><strong>source</strong></code>, <code><strong>destination</strong></code>), and duration of the route (<code><strong>duration</strong></code>).</li></ul></li></ol><ol type="1" id="2f8744e0-dafb-4f65-9f9a-16355e42172a" class="numbered-list" start="9"><li><strong>Bus Employees:</strong><ul id="8fc6d71a-7f18-4907-8c9d-8a47a495f190" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>bus_employee</strong></code> table connects buses with their assigned driver, conductor, and cleaner through their respective IDs.</li></ul></li></ol><ol type="1" id="5f4a0c65-2b6e-41bd-91b4-ebf71510342d" class="numbered-list" start="10"><li><strong>Bus Booking:</strong><ul id="423c0d2e-900c-4c07-9627-566eb45a6b65" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>bus_booking</strong></code> table manages bus bookings, including a unique booking ID (<code><strong>id</strong></code>) linked to a specific bus and employee combination and the number of seats booked (<code><strong>no_of_seats</strong></code>).</li></ul></li></ol><ol type="1" id="93d06fd9-7bcc-49f5-a20c-dcf1bc33687f" class="numbered-list" start="11"><li><strong>Customer Booking:</strong><ul id="708219d4-7019-4820-a20d-85815cc626a8" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>customer_book</strong></code> table tracks customer bookings, with a unique booking ID (<code><strong>id</strong></code>) linked to a user, bus booking, rate, booking date, and the number of seats booked.</li></ul><p id="5671f2e5-bd6a-4310-9777-871176a5718b" class="">
+</p><h2 id="aeb8a7f7-fa34-4d6d-9855-41169419305e" class="">ER Diagram:</h2><figure id="a0dd2f5c-7d32-4e86-816d-aea75e1455b7" class="image"><a href="assets/er.png"><img style="width:1441px" src="assets/er.png"/></a></figure><p id="c25afd81-a75f-4d17-b2ee-71671220e774" class="">
+</p><h2 id="a5453c92-746a-405c-b413-0e590a4792cf" class="">Table Schema:</h2><p id="4252a1f9-7d51-4836-bd20-ccb785bd1228" class="">
+</p><ul id="67f6a0ee-1d15-4ef0-bf9f-ac0913e78f26" class="bulleted-list"><li style="list-style-type:disc">bus</li></ul><table id="da07c2d9-ab0d-461f-a842-ac4c7a1d77b4" class="simple-table"><tbody><tr id="daf4385d-170e-4a64-af95-d6d84925ac36"><td id="byC?" class="">bus_no</td><td id="V&lt;nf" class="">bus_type</td><td id="_s\i" class="">make</td></tr><tr id="e9ae0dfe-6a05-4def-abb8-d46a6afb929b"><td id="byC?" class="">(PK)</td><td id="V&lt;nf" class=""></td><td id="_s\i" class=""></td></tr></tbody></table><p id="9ac6e8e2-4f34-49d0-b344-385ffa7bb0d1" class="">
+</p><ul id="ada4d76c-da6f-4795-9e0a-7404603dc4b2" class="bulleted-list"><li style="list-style-type:disc">places</li></ul><table id="da7e7590-a54e-4fa1-9828-95d7c442d594" class="simple-table"><tbody><tr id="01402a0d-a044-4d96-ad73-31da518b0eb1"><td id="krXU" class="">place_abrv</td><td id="vnlz" class="">place_name</td></tr><tr id="99891fba-12fd-4311-9ca7-07effe05e620"><td id="krXU" class="">(PK)</td><td id="vnlz" class=""></td></tr></tbody></table><p id="99460f2e-45db-485f-bc35-4837c3c6dda9" class="">
+</p><p id="93a7f14b-75f1-4235-84c6-731d6651068d" class="">
+</p><ul id="dabefecc-0c0c-4796-a92c-187f31514abe" class="bulleted-list"><li style="list-style-type:disc">employees</li></ul><table id="3103b263-1e82-4b41-a34c-42d920011d24" class="simple-table"><tbody><tr id="c74f0cfb-a4d6-44dc-aaf7-cbd79b7a0ba0"><td id="WJUN" class="">employee_id</td><td id="~;Y?" class="">employee_name</td><td id="r=dg" class="">employee_role</td></tr><tr id="92293bce-e036-4dd4-b05e-afc65198e716"><td id="WJUN" class="">(PK)</td><td id="~;Y?" class=""></td><td id="r=dg" class=""></td></tr></tbody></table><p id="f07d1440-f560-44f5-b84f-d2e63fe1616c" class="">
+</p><ul id="07956f08-e300-4cd6-aa03-1c934eb368d1" class="bulleted-list"><li style="list-style-type:disc"><strong>employee_role_mapping</strong></li></ul><table id="07fbc477-c238-47d5-9db7-4f90324ce775" class="simple-table"><tbody><tr id="041997b9-4ee8-4d36-b02c-25ac675e50b9"><td id="uCkY" class="">role_id</td><td id="aWGh" class="">role_name</td></tr><tr id="058270da-7e46-4037-baa3-3dc9aff75a29"><td id="uCkY" class="">(PK, FK)</td><td id="aWGh" class=""></td></tr></tbody></table><p id="73ede201-0d7d-466f-b280-415ec73d295b" class="">
+</p><ul id="a2f03830-34ab-447e-9bf5-e2793be9a55e" class="bulleted-list"><li style="list-style-type:disc">users</li></ul><table id="4a6d9226-5caf-42ba-ad8b-bfc7496ebd67" class="simple-table"><tbody><tr id="afa10731-f312-47d1-bc7f-7c01afc38d0d"><td id="Wh}Z" class="">user_id</td><td id="IbAg" class="">username</td><td id="Mjhc" class="">email</td><td id="Po@R" class="">password</td></tr><tr id="f52e9706-965a-4641-a1de-14d4b2d5aee3"><td id="Wh}Z" class="">(PK)</td><td id="IbAg" class=""></td><td id="Mjhc" class=""></td><td id="Po@R" class=""></td></tr></tbody></table><ul id="d723deef-d3d2-477d-a516-ba5eff1d8203" class="bulleted-list"><li style="list-style-type:disc"><strong>user_role_mapping</strong></li></ul><table id="0815f57c-541c-48a1-ae65-b873a03770f9" class="simple-table"><tbody><tr id="6a82b09a-10a7-4c5f-a8d6-c85465e01914"><td id="z?Cp" class="">user_id</td><td id="WsFf" class="">role_id</td></tr><tr id="56548601-2a58-4976-80b8-166c4eab8219"><td id="z?Cp" class="">(PK, FK)</td><td id="WsFf" class="">(FK)</td></tr></tbody></table><p id="a46fa260-9ff9-476c-a3d0-dea3ccf49f40" class="">
+</p><ul id="5609a96c-20bc-4363-9c32-bb167b89ed66" class="bulleted-list"><li style="list-style-type:disc"><strong>role_id_name_mapping</strong></li></ul><table id="b3207d0b-8360-4c7e-955d-10c0690f8308" class="simple-table"><tbody><tr id="8439cacd-3101-4b3f-a16a-b5d1519be918"><td id=";`PG" class="">role_id</td><td id="ugUm" class="">role_name</td></tr><tr id="3ab581b5-882e-4116-a615-e0fb9c3b52da"><td id=";`PG" class="">(PK)</td><td id="ugUm" class=""></td></tr></tbody></table><p id="e7edc868-2c63-4470-b2a2-fc81671cc888" class="">
+</p><ul id="bf69fed5-01b9-4ca7-b7a8-4923f908dd7a" class="bulleted-list"><li style="list-style-type:disc"><strong>bus_route</strong></li></ul><table id="cdb8ab7b-bc6a-4ffa-b424-ce3035b06a2a" class="simple-table"><tbody><tr id="78b93b41-ff7b-4ec3-ad12-e64626c3b856"><td id="HTLs" class="">bus_id</td><td id="U}ei" class="">source</td><td id="Bi~@" class="">destination</td><td id="OMad" class="">duration</td></tr><tr id="62c2c1f6-a78e-4d67-b268-4bc21c8ee704"><td id="HTLs" class="">(PK, FK)</td><td id="U}ei" class="">(FK)</td><td id="Bi~@" class="">(FK)</td><td id="OMad" class=""></td></tr></tbody></table><p id="3b857e42-695a-4bd2-807a-2b0a0baef59b" class="">
+</p><ul id="0dca9bb5-a9bf-4a3c-b100-bea9767702ab" class="bulleted-list"><li style="list-style-type:disc"><strong>bus_employee</strong></li></ul><table id="5dde9391-9395-482d-b876-f90b53a9d0c1" class="simple-table"><tbody><tr id="1763bd4f-acea-4fae-b9bc-cc26cc1d8db1"><td id="PXQE" class="">id</td><td id="V_^q" class="">driver_id</td><td id="|[RA" class="">conductor_id</td><td id="[ghC" class="">cleaner_id</td></tr><tr id="32449745-8d18-482c-a9c7-2149c391d8f9"><td id="PXQE" class="">(PK, FK)</td><td id="V_^q" class="">(FK)</td><td id="|[RA" class="">(FK)</td><td id="[ghC" class="">(FK)</td></tr></tbody></table><p id="421ec04d-ff10-4736-92b2-2b87a6869c86" class="">
+</p><ul id="992fd0b5-8cd5-4c11-9443-dc09d541e442" class="bulleted-list"><li style="list-style-type:disc"><strong>bus_booking</strong></li></ul><table id="55fef20d-eccb-460b-9434-443df69184e9" class="simple-table"><tbody><tr id="85f6deb3-3e7e-433e-9111-be3623f484b5"><td id="?wh^" class="">id</td><td id="[OaW" class="">no_of_seats</td></tr><tr id="640380d3-3548-43e2-813a-f3ac76c8debd"><td id="?wh^" class="">(PK, FK)</td><td id="[OaW" class=""></td></tr></tbody></table><p id="c64a1960-2118-4a7f-bfc3-9b750d8d6616" class="">
+</p><ul id="a4be7e1b-0a85-4ab4-ad37-ea2bf8aff9ef" class="bulleted-list"><li style="list-style-type:disc"><strong>customer_book</strong></li></ul><table id="71eb006d-6d81-45ed-992a-72fcf0339bf7" class="simple-table"><tbody><tr id="aea3bd35-43ba-4455-9238-439bb93f77e4"><td id="T:zE" class="">id</td><td id="Kcql" class="">rate</td><td id="ccWR" class="">bus_id</td><td id=":iBw" class="">booking_date</td><td id="wOBU" class="">no_of_seats</td></tr><tr id="3031e525-f558-4925-9f21-030303684453"><td id="T:zE" class="">(PK, FK)</td><td id="Kcql" class=""></td><td id="ccWR" class="">(FK)</td><td id=":iBw" class=""></td><td id="wOBU" class=""></td></tr></tbody></table><p id="017d04e7-5787-4046-b1b6-5eceadb0b09c" class="">
+</p></li></ol></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
